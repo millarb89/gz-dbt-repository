@@ -4,7 +4,27 @@ sources:
     tables:
       - name: sales
         identifier: raw_gz_sales
+        description: sales of greenweez / we have one row per products_id found in each order id
+        columns:
+          - name: date_date
+            description: the date of purchase
+          - name: orders_id
+            description: order identifier non unique
+          - name: products_id
+            description: product identifier non unique
+          - name: revenue
+            description: item sold for $ excl shipping fee etc
+          - name: quantity
+            description: number sold of this item
       - name: product
         identifier: raw_gz_product
+        description: products of greenweez / we have one row per unique product
+        columns:
+          - name: products_id
+            description: primary key of the table
+            tests:
+              - unique
+          - name: purchase_price
+            description: cost of the goods
       - name: ship
         identifier: raw_gz_ship

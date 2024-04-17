@@ -28,3 +28,38 @@ sources:
             description: cost of the goods
       - name: ship
         identifier: raw_gz_ship
+        description: shipping details
+        columns:
+          - name: ship_id
+            description: shipping identifier
+
+models:
+  - name: int_sales_margin
+    tests:
+      - unique:
+          column_name: "(orders_id || '-' || products_id)"
+      - not_null:
+          column_name:
+            - orders_id
+            - products_id
+            - margin
+            - Purchase_cost
+            - date_date
+            - revenue
+            - quantity
+
+  - name: int_orders_margin
+    description: margin calcultation per order
+    columns:
+      - name: order_id
+        description: primary key
+      - name: margin
+        description: Margin = Revenue - Purchase_cost
+      - name: Purchase_cost
+        description: Purchase_cost = Quantity * Purchase_price
+      - name: date_date
+        description: date of the order
+      - name: revenue
+        description: sum of revenue per order
+      - name: quantity
+        description: sum of quantity per order
